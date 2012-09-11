@@ -13,7 +13,9 @@ baseURL = "http://metrotransit.org/Mobile/Nextrip.aspx"
 get '/' do
 	options = [:hard_wrap, :filter_html, :autolink, :no_intraemphasis, :fenced_code, :gh_blockcode]
   readme = File.read("README.md")
-  Redcarpet.new(readme, *options).to_html
+  renderer = Redcarpet::Render::HTML.new(:hard_wrap => true)
+  md = Redcarpet::Markdown.new(renderer, :autolink => true, :no_intra_emphasis => true, :fenced_code_blocks => true)
+  md.render(readme)
 end
 
 get '/routes' do

@@ -1,6 +1,8 @@
 # MetroTransit API - Ruby
 This API provides data from MetroTransit.org in a JSON encoded format.
 
+Written by [Joe Pintozzi](http://pintozzi.com).
+
 **This takes much influence from [cmaul](https://github.com/cmaul)'s [MetroTransit-API](https://github.com/cmaul/MetroTransit-API).  The [current implementation](http://metrotransitapi.appspot.com/) on Google's App Engine seems to no longer work, so I decided to rewrite it in ruby.**
 
 [hkp](https://github.com/hkp)'s [heroku-sinatra-app](https://github.com/hkp/heroku-sinatra-app) was used as a base to quickly get this up onto Heroku.
