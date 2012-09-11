@@ -1,7 +1,7 @@
 # MetroTransit API - Ruby
 This API provides data from MetroTransit.org in a JSON encoded format.
 
-Written by [Joe Pintozzi](http://pintozzi.com).
+Written by [Joe Pintozzi](http://pintozzi.com), source available on [github](https://github.com/pyro2927/MetroTransit-API).
 
 **This takes much influence from [cmaul](https://github.com/cmaul)'s [MetroTransit-API](https://github.com/cmaul/MetroTransit-API).  The [current implementation](http://metrotransitapi.appspot.com/) on Google's App Engine seems to no longer work, so I decided to rewrite it in ruby.**
 
@@ -9,10 +9,10 @@ Written by [Joe Pintozzi](http://pintozzi.com).
 
 Currently Supported Interfaces:
 
-routes - Displays the list of all routes provided by MetroTransit.
-directions - Displays the list of potential directions for a given route.
-stops - Displays the list of stops given a route and a direction
-nextrip/nextTrip - Displays a list of times for the bus to arrive given a stop, direction, and route
+* routes - Displays the list of all routes provided by MetroTransit.
+* directions - Displays the list of potential directions for a given route.
+* stops - Displays the list of stops given a route and a direction
+* nextrip/nextTrip - Displays a list of times for the bus to arrive given a stop, direction, and route
 
 ##Routes
 
