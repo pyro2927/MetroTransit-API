@@ -3,6 +3,7 @@ require 'sinatra'
 require 'nokogiri'
 require 'open-uri'
 require 'json'
+require 'redcarpet'
 
 configure :production do
 end
@@ -10,8 +11,9 @@ end
 baseURL = "http://metrotransit.org/Mobile/Nextrip.aspx"
 
 get '/' do
-  "Congradulations!
-   You're running a Sinatra application on Heroku!"
+	options = [:hard_wrap, :filter_html, :autolink, :no_intraemphasis, :fenced_code, :gh_blockcode]
+  readme = File.read("README.md")
+  Redcarpet.new(readme, *options).to_html
 end
 
 get '/routes' do

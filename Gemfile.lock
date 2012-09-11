@@ -3,6 +3,7 @@ GEM
   specs:
     nokogiri (1.5.5)
     rack (1.2.1)
+    redcarpet (1.17.2)
     sinatra (1.1.0)
       rack (~> 1.1)
       tilt (~> 1.1)
@@ -13,4 +14,5 @@ PLATFORMS
 
 DEPENDENCIES
   nokogiri
+  redcarpet (= 1.17.2)
   sinatra
