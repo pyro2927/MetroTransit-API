@@ -18,55 +18,61 @@ get '/' do
   md.render(readme)
 end
 
-get '/routes' do
-	doc = Nokogiri::HTML(open(baseURL))
-	select = doc.xpath("//select[@id='ctl00_mainContent_NexTripControl1_ddlNexTripRoute']").first
-	options = select.search("option")
-	routes = Hash.new
-	options.each do |option|
-		unless option['value'].eql? "0"
-			routes[option['value']] = option.content
+['/routes', '/Routes'].each do |path|
+	get path do
+		doc = Nokogiri::HTML(open(baseURL))
+		select = doc.xpath("//select[@id='ctl00_mainContent_NexTripControl1_ddlNexTripRoute']").first
+		options = select.search("option")
+		routes = Hash.new
+		options.each do |option|
+			unless option['value'].eql? "0"
+				routes[option['value']] = option.content
+			end
 		end
+		content_type :json
+		routes.to_json
 	end
-	content_type :json
-	routes.to_json
 end
 
-get '/directions' do
-	content_type :json
-	if params[:route].nil?
-		return "{'error':'Please include the route parameter in your request'}"
-	end
-	doc = Nokogiri::HTML(open(baseURL + "?route=" + params[:route]))
-	select = doc.xpath("//select[@id='ctl00_mainContent_NexTripControl1_ddlNexTripDirection']").first
-	options = select.search("option")
-	directions = Hash.new
-	options.each do |option|
-		unless option['value'].eql? "0"
-			directions[option['value']] = option.content
+['/directions', '/Directions'].each do |path|
+	get path do
+		content_type :json
+		if params[:route].nil?
+			return "{'error':'Please include the route parameter in your request'}"
 		end
+		doc = Nokogiri::HTML(open(baseURL + "?route=" + params[:route]))
+		select = doc.xpath("//select[@id='ctl00_mainContent_NexTripControl1_ddlNexTripDirection']").first
+		options = select.search("option")
+		directions = Hash.new
+		options.each do |option|
+			unless option['value'].eql? "0"
+				directions[option['value']] = option.content
+			end
+		end
+		directions.to_json
 	end
-	directions.to_json
 end
 
-get '/stops' do
-	content_type :json
-	if params[:route].nil? or params[:direction].nil?
-		return "{'error':'Please include the route and direction parameters in your request'}"
-	end
-	doc = Nokogiri::HTML(open(baseURL + "?route=" + params[:route] + "&direction=" + params[:direction]))
-	select = doc.xpath("//select[@id='ctl00_mainContent_NexTripControl1_ddlNexTripNode']").first
-	options = select.search("option")
-	stops = Hash.new
-	options.each do |option|
-		unless option['value'].eql? "0"
-			stops[option['value']] = option.content
+['/stops', '/Stops'].each do |path|
+	get path do
+		content_type :json
+		if params[:route].nil? or params[:direction].nil?
+			return "{'error':'Please include the route and direction parameters in your request'}"
 		end
+		doc = Nokogiri::HTML(open(baseURL + "?route=" + params[:route] + "&direction=" + params[:direction]))
+		select = doc.xpath("//select[@id='ctl00_mainContent_NexTripControl1_ddlNexTripNode']").first
+		options = select.search("option")
+		stops = Hash.new
+		options.each do |option|
+			unless option['value'].eql? "0"
+				stops[option['value']] = option.content
+			end
+		end
+		stops.to_json
 	end
-	stops.to_json
 end
 
-['/nexttrip', '/nextTrip'].each do |path|
+['/nexttrip', '/nextTrip', '/NextTrip'].each do |path|
 	get path do
 		content_type :json
 		if params[:route].nil? or params[:direction].nil? or params[:stop].nil?
