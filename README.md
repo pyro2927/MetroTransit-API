@@ -3,6 +3,9 @@ This API provides data from MetroTransit.org in a JSON encoded format.
 
 Written by [Joe Pintozzi](http://pintozzi.com), source available on [github](https://github.com/pyro2927/MetroTransit-API).
 
+## Update!!
+Stops are now returned as an array so they maintain the correct order from <http://MetroTransit.org>.
+
 **This takes much influence from [cmaul](https://github.com/cmaul)'s [MetroTransit-API](https://github.com/cmaul/MetroTransit-API).  The [current implementation](http://metrotransitapi.appspot.com/) on Google's App Engine seems to no longer work, so I decided to rewrite it in ruby.**
 
 [hkp](https://github.com/hkp)'s [heroku-sinatra-app](https://github.com/hkp/heroku-sinatra-app) was used as a base to quickly get this up onto Heroku.
@@ -45,7 +48,7 @@ Required parameters:
 
 Sample output:
 
-	{"4MIN":"Minnesota St and 4th St","RIUN":"University Ave and Rice St","UNDA":"University Ave and Dale St","OXUN":"University Ave and Oxford St","SNUN":"University Ave W and Snelling Ave","FAUN":"University Ave and Fairview Ave","EMUN":"University Ave and Berry St","HURN":"Huron Station and I-94","OAUN":"University Ave SE and Oak St SE","JOED":"Jones Hall and Eddy Hall (U of M)","WIHA":"Willey Hall (U of M)","4NIC":"4th St S  and Nicollet Mall","5GAR":"Ramp B/5th St Transit Center"}
+	[{"key":"4MIN","name":"Minnesota St and 4th St"},{"key":"RIUN","name":"University Ave and Rice St"},{"key":"UNDA","name":"University Ave and Dale St"},{"key":"OXUN","name":"University Ave and Oxford St"},{"key":"SNUN","name":"University Ave W and Snelling Ave"},{"key":"FAUN","name":"University Ave and Fairview Ave"},{"key":"EMUN","name":"University Ave and Berry St"},{"key":"HURN","name":"Huron Station and I-94"},{"key":"OAUN","name":"University Ave SE and Oak St SE"},{"key":"JOED","name":"Jones Hall and Eddy Hall (U of M)"},{"key":"WIHA","name":"Willey Hall (U of M)"},{"key":"4NIC","name":"4th St S  and Nicollet Mall"},{"key":"5GAR","name":"Ramp B/5th St Transit Center"}]
 
 ##Nextrip
 
