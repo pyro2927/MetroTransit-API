@@ -78,15 +78,20 @@ end
 ['/nexttrip', '/nextTrip', '/NextTrip'].each do |path|
 	get path do
 		content_type :json
-		if params[:route].nil? or params[:direction].nil? or params[:stop].nil?
+		if ( params[:route].nil? or params[:direction].nil? or params[:stop].nil? ) and params[:stopnumber].nil?
 			return "{'error':'Please include the route, direction, and stop parameters in your request'}"
 		end
-		doc = Nokogiri::HTML(open(baseURL + "?route=" + params[:route] + "&direction=" + params[:direction] + "&stop=" + params[:stop]))
+		if params[:stopnumber].nil?
+			doc = Nokogiri::HTML(open(baseURL + "?route=" + params[:route] + "&direction=" + params[:direction] + "&stop=" + params[:stop]))
+		else
+			doc = Nokogiri::HTML(open(baseURL + "?stopnumber=" + params[:stopnumber]))
+		end
 		div = doc.xpath("//div[@id='ctl00_mainContent_NexTripControl1_NexTripResults1_departures']").first
+		stop_name = doc.css('span.black10').last.content
 		nexttrips = Array.new
 		div.search("div").each do |row|
 			spans = row.css('span')
-			nexttrips << {:number => spans.first.content, :time => spans.last.content}
+			nexttrips << {:number => spans.first.content, :time => spans.last.content, :stop_name => stop_name}
 		end
 		nexttrips.to_json
 	end

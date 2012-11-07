@@ -3,8 +3,8 @@ This API provides data from MetroTransit.org in a JSON encoded format.
 
 Written by [Joe Pintozzi](http://pintozzi.com), source available on [github](https://github.com/pyro2927/MetroTransit-API).
 
-## Update!!
-Stops are now returned as an array so they maintain the correct order from <http://MetroTransit.org>.
+## Updates!!
+Stops are now returned as an array so they maintain the correct order from <http://MetroTransit.org>.  /nextTrip accepts a stop number for convenience.
 
 **This takes much influence from [cmaul](https://github.com/cmaul)'s [MetroTransit-API](https://github.com/cmaul/MetroTransit-API).  The [current implementation](http://metrotransitapi.appspot.com/) on Google's App Engine seems to no longer work, so I decided to rewrite it in ruby.**
 
@@ -52,7 +52,7 @@ Sample output:
 
 ##Nextrip
 
-Example: <http://metrotransit.heroku.com/nextTrip?route=50&direction=3&stop=FAUN>
+Example: <http://metrotransit.heroku.com/nextTrip?route=50&direction=3&stop=FAUN> or <http://metrotransit.heroku.com/nextTrip?stopnumber=15874>
 
 Required parameters:
 
@@ -60,6 +60,10 @@ Required parameters:
 * direction
 * stop
 
+OR
+
+* stopnumber
+
 Sample output:
 
-	[{"number":"50","time":"10:52"}]
+	[{"number":"16","time":"3 Min","stop_name":"University Av - Hampden Av"},{"number":"16","time":"15 Min","stop_name":"University Av - Hampden Av"},{"number":"16","time":"19 Min","stop_name":"University Av - Hampden Av"},{"number":"16","time":"2:17","stop_name":"University Av - Hampden Av"},{"number":"16","time":"2:27","stop_name":"University Av - Hampden Av"}]
